@@ -70,3 +70,29 @@ function getClosestCity(TargetCityObject) {
     }
 }
 getClosestCity(WhatCity)
+
+function getFurthestCity(TargetCityObject) {
+    TargetCityObject = getCityId(TargetCityObject);
+    let FurthestDistance = -Infinity;
+    let FurthestCity = null;
+
+    for (let i = 0; i < distances.length; i++) {
+        if (distances[i].city1 === TargetCityObject) {
+            if (distances[i].distance > FurthestDistance) {
+                FurthestDistance = distances[i].distance;
+                FurthestCity = distances[i].city2; 
+            }
+        } else if (distances[i].city2 === TargetCityObject) {
+            if (distances[i].distance > FurthestDistance) {
+                FurthestDistance = distances[i].distance;
+                FurthestCity = distances[i].city1;
+            }
+        }
+    }
+
+    if (FurthestCity) {
+        const FurthestCityName = getCityNameByID(FurthestCity);
+        document.getElementById("furthest").textContent = FurthestCityName;
+    }
+}
+getFurthestCity(WhatCity)
