@@ -1,9 +1,11 @@
 
 const main = document.querySelector("main");
 const CityOfChoice = document.querySelector("h2");
+const h3 = document.querySelector("h3");
 const AddTarget = document.getElementsByClassName("cityBox");
 const AddTargetClosest = document.getElementById("closest");
 const AddTargetFurthest = document.getElementById("furthest");
+
 
 
 
@@ -23,6 +25,7 @@ function findCity(city) {
     }
         CityOfChoice.textContent = `${WhatCity} finns inte i databasen`
         document.title = "Not Found";
+        h3.style.display = "none"
 }
 
 for (let i = 0; i < cities.length; i++) {
@@ -81,8 +84,10 @@ function getClosestCity(TargetCityObject) {
         const cityBoxes = document.querySelectorAll('.cityBox');
         for (let i = 0; i < cityBoxes.length; i++) {
             if (cityBoxes[i].textContent === ClosestCityName) {
-              cityBoxes[i].classList.add('closest');
-            break; 
+                const distanceDividedBy10 = shortestDistance / 10;
+                cityBoxes[i].classList.add('closest');
+                cityBoxes[i].textContent += ` ligger ${distanceDividedBy10} mil bort`;
+                break;
             }
         }
     }
@@ -121,8 +126,10 @@ function getFurthestCity(TargetCityObject) {
         const cityBoxes = document.querySelectorAll('.cityBox');
         for (let i = 0; i < cityBoxes.length; i++) {
             if (cityBoxes[i].textContent === FurthestCityName) {
-              cityBoxes[i].classList.add('furthest');
-            break; 
+                const distanceDividedBy10 = FurthestDistance / 10;
+                cityBoxes[i].classList.add('furthest');
+                cityBoxes[i].textContent += ` ligger ${distanceDividedBy10} mil bort`;
+                break;
             }
         }
     }
