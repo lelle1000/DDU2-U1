@@ -5,6 +5,7 @@ const h3 = document.querySelector("h3");
 const AddTarget = document.getElementsByClassName("cityBox");
 const AddTargetClosest = document.getElementById("closest");
 const AddTargetFurthest = document.getElementById("furthest");
+const TableContainer = document.getElementById("table")
 
 
 
@@ -137,3 +138,10 @@ function getFurthestCity(TargetCityObject) {
 getFurthestCity(WhatCity)
 
 
+
+
+
+TableContainer.innerHTML = `<div class="cell head_row"></div>`
+for (let i = 0; i < cities.length; i++) {
+    TableContainer.innerHTML += `<div class="cell head_row">${cities[i].id}</div>`
+}
