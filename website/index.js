@@ -7,10 +7,10 @@ const CityOfChoice = document.querySelector("h2");
 let WhatCity = prompt("Vilken stad?")
 function findCity(city) {
 
-    const AddTarget = document.getElementsByClassName("cityBox")
+    const AddTarget = document.getElementsByClassName("cityBox");
 
     for (let i = 0; i < cities.length; i++) {
-        if (city.toLowerCase() === cities[i].name.toLowerCase()) {
+        if (city === cities[i].name) {
             CityOfChoice.textContent = `${cities[i].name} (${cities[i].country})`
             document.title = `${WhatCity}`
             
@@ -50,6 +50,8 @@ function getClosestCity(TargetCityObject) {
     let shortestDistance = Infinity;
     let ClosestCity = null;
 
+    const AddTargetClosest = document.getElementById("closest");
+
     for (let i = 0; i < distances.length; i++) {
         if (distances[i].city1 === TargetCityObject) {
             if (distances[i].distance < shortestDistance) {
@@ -66,7 +68,8 @@ function getClosestCity(TargetCityObject) {
 
     if (ClosestCity) {
         const ClosestCityName = getCityNameByID(ClosestCity);
-        document.getElementById("closest").textContent = ClosestCityName;
+        AddTargetClosest.textContent = ClosestCityName;
+        
     }
 }
 getClosestCity(WhatCity)
@@ -75,6 +78,8 @@ function getFurthestCity(TargetCityObject) {
     TargetCityObject = getCityId(TargetCityObject);
     let FurthestDistance = -Infinity;
     let FurthestCity = null;
+
+    const AddTargetFurthest = document.getElementById("furthest");
 
     for (let i = 0; i < distances.length; i++) {
         if (distances[i].city1 === TargetCityObject) {
@@ -92,7 +97,9 @@ function getFurthestCity(TargetCityObject) {
 
     if (FurthestCity) {
         const FurthestCityName = getCityNameByID(FurthestCity);
-        document.getElementById("furthest").textContent = FurthestCityName;
+        AddTargetFurthest.textContent = FurthestCityName;
     }
 }
 getFurthestCity(WhatCity)
+
+
