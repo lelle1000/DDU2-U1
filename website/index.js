@@ -4,10 +4,7 @@ const main = document.querySelector("main");
 const CityOfChoice = document.querySelector("h2");
 
 
-
-// Ställer frågan vilken stad
 let WhatCity = prompt("Vilken stad?")
-
 function findCity(city) {
 
     const AddTarget = document.getElementsByClassName("cityBox")
@@ -31,3 +28,45 @@ for (let i = 0; i < cities.length; i++) {
     
 }
 findCity(WhatCity)
+
+function getCityId(cityName) {
+    for (let i = 0; i < cities.length; i++) {
+        if (cities[i].name === cityName) {
+            return cities[i].id;
+        }
+    }
+}
+
+function getCityNameByID(cityId) {
+    for (let i = 0; i < cities.length; i++) {
+        if (cities[i].id === cityId) {
+            return cities[i].name;
+        }
+    }
+}
+
+function getClosestCity(TargetCityObject) {
+    TargetCityObject = getCityId(TargetCityObject);
+    let shortestDistance = Infinity;
+    let ClosestCity = null;
+
+    for (let i = 0; i < distances.length; i++) {
+        if (distances[i].city1 === TargetCityObject) {
+            if (distances[i].distance < shortestDistance) {
+                shortestDistance = distances[i].distance;
+                ClosestCity = distances[i].city2; 
+            }
+        } else if (distances[i].city2 === TargetCityObject) {
+            if (distances[i].distance < shortestDistance) {
+                shortestDistance = distances[i].distance;
+                ClosestCity = distances[i].city1;
+            }
+        }
+    }
+
+    if (ClosestCity) {
+        const ClosestCityName = getCityNameByID(ClosestCity);
+        document.getElementById("closest").textContent = ClosestCityName;
+    }
+}
+getClosestCity(WhatCity)
