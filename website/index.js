@@ -6,6 +6,7 @@ const AddTargetClosest = document.getElementById("closest");
 const AddTargetFurthest = document.getElementById("furthest");
 
 
+
 let WhatCity = prompt("Vilken stad?")
 function findCity(city) {
 
@@ -30,6 +31,10 @@ for (let i = 0; i < cities.length; i++) {
 }
 findCity(WhatCity)
 
+
+
+
+
 function getCityId(cityName) {
     for (let i = 0; i < cities.length; i++) {
         if (cities[i].name === cityName) {
@@ -45,6 +50,10 @@ function getCityNameByID(cityId) {
         }
     }
 }
+
+
+
+
 
 function getClosestCity(TargetCityObject) {
     TargetCityObject = getCityId(TargetCityObject);
@@ -65,13 +74,24 @@ function getClosestCity(TargetCityObject) {
         }
     }
 
-    if (ClosestCity) {
+    if (ClosestCity !== null) {
         const ClosestCityName = getCityNameByID(ClosestCity);
         AddTargetClosest.textContent = ClosestCityName;
-        
+
+        const cityBoxes = document.querySelectorAll('.cityBox');
+        for (let i = 0; i < cityBoxes.length; i++) {
+            if (cityBoxes[i].textContent === ClosestCityName) {
+              cityBoxes[i].classList.add('closest');
+            break; 
+            }
+        }
     }
 }
 getClosestCity(WhatCity)
+
+
+
+
 
 function getFurthestCity(TargetCityObject) {
     TargetCityObject = getCityId(TargetCityObject);
