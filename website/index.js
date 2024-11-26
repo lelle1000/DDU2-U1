@@ -117,6 +117,14 @@ function getFurthestCity(TargetCityObject) {
     if (FurthestCity) {
         const FurthestCityName = getCityNameByID(FurthestCity);
         AddTargetFurthest.textContent = FurthestCityName;
+
+        const cityBoxes = document.querySelectorAll('.cityBox');
+        for (let i = 0; i < cityBoxes.length; i++) {
+            if (cityBoxes[i].textContent === FurthestCityName) {
+              cityBoxes[i].classList.add('furthest');
+            break; 
+            }
+        }
     }
 }
 getFurthestCity(WhatCity)
