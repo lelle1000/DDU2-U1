@@ -149,7 +149,16 @@ for (let i = 0; i < cities.length; i++) {
 for (let i = 0; i < cities.length; i++) {
     let TableRow = `<div class="cell head_column">${cities[i].id}-${cities[i].name}</div>`;
     for (let j = 0; j < cities.length; j++) {
-        TableRow += `<div class="cell"></div>`;
+        TableRow += `<div class="cell" id="cell-${i}-${j}"></div>`;
     }
     TableContainer.innerHTML += TableRow;
+}
+
+for (let i = 0; i < distances.length; i++) {
+    let city1 = distances[i].city1
+    let city2 = distances[i].city2
+    let distance = distances[i].distance
+
+    document.getElementById(`cell-${city1}-${city2}`).textContent = (distance / 10)
+    document.getElementById(`cell-${city2}-${city1}`).textContent = (distance / 10)
 }
