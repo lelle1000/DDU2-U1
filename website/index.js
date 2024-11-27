@@ -149,7 +149,7 @@ for (let i = 0; i < cities.length; i++) {
 for (let i = 0; i < cities.length; i++) {
     let TableRow = `<div class="cell head_column">${cities[i].id}-${cities[i].name}</div>`;
     for (let j = 0; j < cities.length; j++) {
-        TableRow += `<div class="cell" id="cell-${i}-${j}"></div>`;
+        TableRow += `<div class="cell"></div>`;
     }
     TableContainer.innerHTML += TableRow;
 }
