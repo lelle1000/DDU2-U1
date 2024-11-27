@@ -8,9 +8,8 @@ const AddTargetFurthest = document.getElementById("furthest");
 const TableContainer = document.getElementById("table")
 
 
-
-
 let WhatCity = prompt("Vilken stad?")
+
 function findCity(city) {
 
 
@@ -31,12 +30,8 @@ function findCity(city) {
 
 for (let i = 0; i < cities.length; i++) {
     document.getElementById("cities").innerHTML += `<div class="cityBox">${cities[i].name}</div>`
-    
 }
 findCity(WhatCity)
-
-
-
 
 
 function getCityId(cityName) {
@@ -54,9 +49,6 @@ function getCityNameByID(cityId) {
         }
     }
 }
-
-
-
 
 
 function getClosestCity(TargetCityObject) {
@@ -94,9 +86,6 @@ function getClosestCity(TargetCityObject) {
     }
 }
 getClosestCity(WhatCity)
-
-
-
 
 
 function getFurthestCity(TargetCityObject) {
@@ -138,33 +127,25 @@ function getFurthestCity(TargetCityObject) {
 getFurthestCity(WhatCity)
 
 
-
-
-
 TableContainer.innerHTML = `<div class="cell head_row"></div>`
+
 for (let i = 0; i < cities.length; i++) {
     TableContainer.innerHTML += `<div class="cell head_row">${cities[i].id}</div>`
 }
 
 
-
-
-
 for (let i = 0; i < cities.length; i++) {
-    let TableRow = `<div class="cell head_column">${cities[i].id}-${cities[i].name}</div>`;
-
+    let TableCells = `<div class="cell head_column">${cities[i].id}-${cities[i].name}</div>`;
 
     for (let j = 0; j < cities.length; j++) {
         if (j % 2 === 0) {
-            TableRow += `<div class="cell even_col" id="cell-${i}-${j}"></div>`;
+            TableCells += `<div class="cell even_col" id="cell-${i}-${j}"></div>`;
         } else {
-            TableRow += `<div class="cell" id="cell-${i}-${j}"></div>`;
+            TableCells += `<div class="cell" id="cell-${i}-${j}"></div>`;
         } 
     }
-    TableContainer.innerHTML += TableRow;
+    TableContainer.innerHTML += TableCells;
 }
-
-
 
 
 for (let i = 0; i < distances.length; i++) {
