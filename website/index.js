@@ -11,8 +11,6 @@ const TableContainer = document.getElementById("table")
 let WhatCity = prompt("Vilken stad?")
 
 function findCity(city) {
-
-
     for (let i = 0; i < cities.length; i++) {
         if (city === cities[i].name) {
             CityOfChoice.textContent = `${cities[i].name} (${cities[i].country})`
@@ -127,32 +125,34 @@ function getFurthestCity(TargetCityObject) {
 getFurthestCity(WhatCity)
 
 
-TableContainer.innerHTML = `<div class="cell head_row"></div>`
+TableContainer.innerHTML = `<div class="cell head_row"></div>`; 
 
 for (let i = 0; i < cities.length; i++) {
-    TableContainer.innerHTML += `<div class="cell head_row">${cities[i].id}</div>`
+    TableContainer.innerHTML += `<div class="cell head_row">${cities[i].id}</div>`; 
 }
+    
 
 
-for (let i = 0; i < cities.length; i++) {
-    let TableCells = `<div class="cell head_column">${cities[i].id}-${cities[i].name}</div>`;
-
-    for (let j = 0; j < cities.length; j++) {
-        if (j % 2 === 0) {
-            TableCells += `<div class="cell even_col" id="cell-${i}-${j}"></div>`;
-        } else {
-            TableCells += `<div class="cell" id="cell-${i}-${j}"></div>`;
-        } 
+for (let rad = 0; rad < cities.length; rad++) {
+    TableContainer.innerHTML += `<div class="cell head_column">${cities[rad].id}-${cities[rad].name}</div>`; 
+    
+    for (let col = 0; col < cities.length; col++) {  
+        let content = ""; 
+    
+        if (rad !== col) { 
+            const KorrektPar = distances.find(dist => (dist.city1 === cities[rad].id && dist.city2 === cities[col].id) || (dist.city2 === cities[rad].id && dist.city1 === cities[col].id)) 
+    
+            if(KorrektPar) { 
+                content = KorrektPar.distance / 10
+            } 
+        }
+            
+        let cellClass = "cell";
+        if (col % 2 === 0) {
+            cellClass += " even_col";
+        }
+        TableContainer.innerHTML += `<div class="${cellClass}">${content}</div>`;
     }
-    TableContainer.innerHTML += TableCells;
 }
+    
 
-
-for (let i = 0; i < distances.length; i++) {
-    let city1 = distances[i].city1
-    let city2 = distances[i].city2
-    let distance = distances[i].distance
-
-    document.getElementById(`cell-${city1}-${city2}`).textContent = (distance / 10)
-    document.getElementById(`cell-${city2}-${city1}`).textContent = (distance / 10)
-}
